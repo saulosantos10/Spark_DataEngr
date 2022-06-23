@@ -1,7 +1,7 @@
 # Realtime Processor Project
 **Realtime Processor Project** goal is to generate an engine using tecnologies like _python_, _kafka_, _spark streaming_ and _avro_. The architecture is to produce a message to Kafka using python and consume this message in real time using apache spark.
 
-### Source codes
+## Source codes
 #### kafka_producer.py
 This source code is responsible to make the whole flow of the producer, it does the following:
 * Reads the config file with generic configuration
@@ -22,12 +22,12 @@ Spark streaming source code responsible for streaming a kafka topic.
 * Starts a stream to kafka server.
 * Read stream of a topic.
 
-### service
+## service
 All services of project
 * avro: Manages all avro read and write, with serialization.
 * yaml: Manages all yaml read and write.
 
-### file
+## file
 Contains all files of project
    * customer.avsc: Avro schema containing information about a hypothetical customer.
       * Customer has the fields:
