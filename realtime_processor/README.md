@@ -22,12 +22,12 @@ Spark streaming source code responsible for streaming a kafka topic.
 * Starts a stream to kafka server.
 * Read stream of a topic.
 
-## service
+## Service
 All services of project
 * avro: Manages all avro read and write, with serialization.
 * yaml: Manages all yaml read and write.
 
-## file
+## File
 Contains all files of project
    * customer.avsc: Avro schema containing information about a hypothetical customer.
       * Customer has the fields:
