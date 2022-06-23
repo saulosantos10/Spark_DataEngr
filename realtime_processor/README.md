@@ -18,12 +18,6 @@ config.yaml: All generic configuration about the project
     * kafka_topic: Name of the topic
     * avro_schema: Relative location of avro schema file: file/input/customer.avsc
 
-### service
-All services of project
-
-avro: Manages all avro read and write, with serialization.
-yaml: Manages all yaml read and write.
-
 ### Source codes
 #### kafka_producer.py
 This source code is responsible to make the whole flow of the producer, it does the following:
@@ -45,6 +39,9 @@ Spark streaming source code responsible for streaming a kafka topic.
 * Starts a stream to kafka server.
 * Read stream of a topic.
 
-
+### service
+All services of project
+* avro: Manages all avro read and write, with serialization.
+* yaml: Manages all yaml read and write.
 
 
