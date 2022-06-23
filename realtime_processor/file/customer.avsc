@@ -1,0 +1,13 @@
+{
+"namespace": "customer.avro",
+ "type": "record",
+ "name": "Customer",
+ "fields": [     
+     {"name": "id",  "type": ["int", "null"]},
+     {"name": "agency", "type": "string"},
+     {"name": "operation_value", "type": ["double", "null"]},
+     {"name": "type", "type": ["int", "null"]},
+     {"name": "date", "type": "string"},
+     {"name": "account_balance", "type": ["double", "null"]}
+ ]
+}

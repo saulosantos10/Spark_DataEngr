@@ -1,0 +1,16 @@
+################################
+# Kafka configuration
+################################
+kafka_server: localhost:9092
+kafka_topic: impacta_project
+
+################################
+# Customer schema
+################################
+avro_schema: file/customer.avsc
+
+################################
+# Input data
+################################
+input_data: file/customers.json
+             

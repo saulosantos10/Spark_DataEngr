@@ -1,0 +1,52 @@
+{
+    "customers": [
+        {
+            "id": 124,
+            "agency": "666",
+            "operation_value": 588.13,
+            "type": 0,
+            "date": "2022-06-18 12:24:00",
+            "account_balance": 16.551
+        },
+        {
+            "id": 138,
+            "agency": "666",
+            "operation_value": 333.8,
+            "type": 1,
+            "date": "2022-06-18 13:04:00",
+            "account_balance": 1000
+        },
+        {
+            "id": 177,
+            "agency": "666",
+            "operation_value": 900,
+            "type": 0,
+            "date": "2022-06-14 18:25:00",
+            "account_balance": 1000
+        },
+        {
+            "id": 166,
+            "agency": "555",
+            "operation_value": 333.8,
+            "type": 0,
+            "date": "2022-06-15 10:40:00",
+            "account_balance": 3988.00
+        },
+        {
+            "id": 400,
+            "agency": "555",
+            "operation_value": 401.8,
+            "type": 0,
+            "date": "2022-06-23 19:40:00",
+            "account_balance": 3988.00
+        },
+        {
+            "id": 500,
+            "agency": "555",
+            "operation_value": 999.8,
+            "type": 0,
+            "date": "2022-06-23 19:40:00",
+            "account_balance": 800.00
+        }
+    ]
+}
