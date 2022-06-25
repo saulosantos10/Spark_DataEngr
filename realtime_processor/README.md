@@ -21,6 +21,7 @@ Spark streaming source code responsible for streaming a kafka topic.
 * Starts a spark session.
 * Starts a stream to kafka server.
 * Read stream of a topic.
+* Data enrichment
 
 ## Service
 All services of project
@@ -31,9 +32,9 @@ All services of project
 Contains all files of project
    * customer.avsc: Avro schema containing information about a hypothetical customer.
       * Customer has the fields:
-         * Customer code: Int 
+         * Customer code: Int
          * Agency: String
-         * Operation value: Double 
+         * Operation value: Double
          * Operation type (Deposit or withdraw): int -> 0 for deposit, 1 for withdraw
          * Date: String -> format yyyy-MM-dd HH:mm:ss
          * Account Balance: Double
