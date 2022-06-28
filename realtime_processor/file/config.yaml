@@ -3,6 +3,7 @@
 ################################
 kafka_server: localhost:9092
 kafka_topic: impacta_project
+kafka_producer_topic: enrichment_topic
 
 ################################
 # Customer schema
@@ -13,4 +14,12 @@ avro_schema: file/customer.avsc
 # Input data
 ################################
 input_data: file/customers.json
+
+################################
+# Mysql database
+################################
+db_url: mysql+pymysql://root:root@localhost:3306/impacta
+db_table: customer
+db_rich_table: customer_rich
+
              
