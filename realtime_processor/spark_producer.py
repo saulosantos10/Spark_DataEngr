@@ -56,5 +56,4 @@ print(df_enric.columns)
 print(df_enric.shape)
 print(df_enric)
 
-mysql.insert(config['db_url'], config['db_rich_table'], df_enric)
-
+mysql.insert(config['db_url'], config['db_enrichment_table'], df_enric)

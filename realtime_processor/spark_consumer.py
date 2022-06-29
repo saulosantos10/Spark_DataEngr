@@ -2,6 +2,8 @@ import service.yaml_service as yaml # Inner
 import service.rule_service as rule # Inner
 import os # To define an env variable.
 import findspark
+import service.mysql_service as mysql # Inner
+import pandas as pd
 
 SCALA_VERSION = '2.12'
 SPARK_VERSION = '3.2.1'
@@ -16,6 +18,7 @@ print('********************************************************')
 
 findspark.init()
 config = yaml.read_yaml('file/config')
+#rule.insert_default_values(config)
 
 from pyspark.sql import SparkSession
 
@@ -35,7 +38,7 @@ df = spark \
 def streaming(df, batch_id):
         df.selectExpr("CAST(value AS STRING) as json")
         requests = df.rdd.map(lambda x: x.value).collect()
-        rule.insert_into_database(requests, config)
+        rule.insert_into_database(requests, config)        
 
 query = df.writeStream \
         .format("console") \
@@ -43,5 +46,8 @@ query = df.writeStream \
         .outputMode("append") \
         .start() \
         .awaitTermination()
+
+
+
 
 
