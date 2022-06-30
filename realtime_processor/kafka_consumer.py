@@ -7,4 +7,5 @@ config = yaml.read_yaml('file/config')
 consumer = KafkaConsumer(config['kafka_enrichment_topic'])
 for message in consumer:
     result = avro.decode(config['avro_enrichment'], message.value)
+    print('********************************************************')
     print(result)

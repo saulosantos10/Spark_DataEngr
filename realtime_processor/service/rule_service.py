@@ -17,34 +17,17 @@ def set_decisions(values, config):
         for row in values:
                 byteObject = bytes(row)
                 result = avro.decode(config['avro_schema'], byteObject)    
-                print(result)            
-                print(result.get('id'))
-
                 output.append(result)
 
         if len(output):
-                print(type(output))
                 df_message = pd.DataFrame(output)
-                print(df_message.columns)
-                print(df_message)
-
                 group_ids = tuple(df_message['id'])
-                print(group_ids)
-
                 db_connection = sql.connect(host='localhost', database='impacta', user='root', password='root')
-
                 db_cursor = db_connection.cursor()
-
                 query = 'SELECT cod_cli,nome,idade,gerente_conta,conta_corrente,tipo_conta_corrente,score_credito FROM impacta.customer where cod_cli in ' + str(group_ids)
-
-                print(query)
-
                 db_cursor.execute(query)
-
                 table_rows = db_cursor.fetchall()
-
                 df_sel_client = pd.DataFrame(table_rows)
-
                 dict = {0: 'cod_cli',
                         1: 'nome',
                         2: 'idade',
@@ -55,17 +38,11 @@ def set_decisions(values, config):
 
                 # call rename () method
                 df_sel_client.rename(columns=dict,inplace=True)
-
-                print(df_sel_client)
-                print(df_sel_client.columns)
-                
                 df_enriq = df_message.merge(
                         df_sel_client,
                         how='inner',
                         left_on='id',
                         right_on='cod_cli')
-                print(df_enriq.columns)
-                print(df_enriq)
 
                 # Nova coluna
                 df_enriq['decision'] = "N/A"
@@ -74,48 +51,32 @@ def set_decisions(values, config):
                 df_decision_trans_value = df_enriq.query('type == 1 and operation_value > account_balance')[['cod_cli','decision']]
                 df_decision_trans_value['decision'] = 'Operação indisponivel, valor do saque maior que saldo em conta'
 
-                print('df_decision_trans_value')
-                print(df_decision_trans_value)
-
                 # Empréstimo pessoal
                 df_decision_loan = df_enriq.query('score_credito >= 300 and tipo_conta_corrente=="Ricão"')[['cod_cli','decision']]
                 df_decision_loan['decision'] = 'Campanha de empréstimo pessoal'
 
-                print('df_decision_loan')
-                print(df_decision_loan)
-
                 # Renegociação de dívidas
                 df_decision_divida = df_enriq.query('idade >= 30 or score_credito <= 200')[['cod_cli','decision']]
                 df_decision_divida['decision'] = 'Renegociação de dívidas disponivel'
-
-                print('df_decision_divida')
-                print(df_decision_divida)
 
                 # Agrupa decisões
                 df_decisions = pd.concat([df_decision_trans_value, df_decision_loan, df_decision_divida])
                 df_agg_decisions = df_decisions.groupby(by='cod_cli').agg(lambda decis: '/'.join(decis))
                 df_agg_decisions.reset_index(inplace=True)
 
-                print(df_agg_decisions)
-
                 # Insere decisões
                 for cod in df_agg_decisions['cod_cli']:
                         df_enriq.loc[df_enriq.cod_cli==cod,'decision'] = df_agg_decisions.loc[df_agg_decisions.cod_cli==cod,'decision']
 
-                print('final decision')
-                print(df_enriq)
-                print(df_enriq.columns)
-
                 data = df_enriq.to_dict('records')
 
+                print('********************************************************')
+                print('FINAL DECISION')
+                print('********************************************************')
                 print(data)
-                print(type(data))
 
                 for i in data:
-                        print(i)
                         bytes_message = avro.encode(config['avro_enrichment'], i)
-                        print(bytes_message)
-                        print(config['kafka_enrichment_topic'])
                         producer.send(config['kafka_enrichment_topic'], bytes_message)
 
 def insert_default_values(config):
