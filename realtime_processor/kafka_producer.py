@@ -8,7 +8,7 @@ producer = KafkaProducer(bootstrap_servers=config['kafka_server'])
 
 with open(config['input_data']) as json_file:
     data = json.load(json_file)
-
+    print(type(data))
     for i in data['customers']:
         bytes_message = avro.encode(config['avro_schema'], i)
         producer.send(config['kafka_topic'], bytes_message)        

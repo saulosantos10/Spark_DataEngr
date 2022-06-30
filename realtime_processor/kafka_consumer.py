@@ -4,8 +4,7 @@ from kafka import KafkaConsumer
 
 config = yaml.read_yaml('file/config')
 
-consumer = KafkaConsumer(config['kafka_topic'])
+consumer = KafkaConsumer(config['kafka_enrichment_topic'])
 for message in consumer:
-    print(message.value)
-    result = avro.decode(config['avro_schema'], message.value)
+    result = avro.decode(config['avro_enrichment'], message.value)
     print(result)

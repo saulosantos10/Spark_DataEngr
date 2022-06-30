@@ -9,6 +9,7 @@ kafka_enrichment_topic: enrichment_topic
 # Customer schema
 ################################
 avro_schema: file/customer.avsc
+avro_enrichment: file/customer_enrich.avsc
 
 ################################
 # Input data
