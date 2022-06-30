@@ -1,0 +1,21 @@
+{
+"namespace": "customer.avro",
+ "type": "record",
+ "name": "Customer",
+ "fields": [     
+     {"name": "id",  "type": ["int", "null"]},
+     {"name": "agency", "type": "string"},
+     {"name": "operation_value", "type": ["double", "null"]},
+     {"name": "type", "type": ["int", "null"]},
+     {"name": "date", "type": "string"},
+     {"name": "account_balance", "type": ["double", "null"]},
+     {"name": "cod_cli",  "type": ["int", "null"]},
+     {"name": "nome", "type": "string"},
+     {"name": "idade",  "type": ["int", "null"]},
+     {"name": "gerente_conta", "type": "string"},
+     {"name": "conta_corrente", "type": "string"},
+     {"name": "tipo_conta_corrente", "type": "string"},
+     {"name": "score_credito",  "type": ["int", "null"]},
+     {"name": "decision", "type": "string"}
+ ]
+}

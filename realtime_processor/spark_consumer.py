@@ -18,6 +18,8 @@ print('********************************************************')
 
 findspark.init()
 config = yaml.read_yaml('file/config')
+
+#### INSERT DEFAULT VALUES IN MYSQL TO ENRICH THE PROCCESS.
 #rule.insert_default_values(config)
 
 from pyspark.sql import SparkSession
@@ -38,7 +40,7 @@ df = spark \
 def streaming(df, batch_id):
         df.selectExpr("CAST(value AS STRING) as json")
         requests = df.rdd.map(lambda x: x.value).collect()
-        rule.insert_into_database(requests, config)        
+        rule.set_decisions(requests, config)        
 
 query = df.writeStream \
         .format("console") \
