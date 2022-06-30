@@ -46,6 +46,13 @@ Spark streaming source code responsible for streaming a kafka topic.
 * Read stream of a topic.
 * Data enrichment.
 
+# Diagram
+
+![Motor_Enriquecimento (3)](https://user-images.githubusercontent.com/66540657/176736058-c21b9862-e482-4b8d-9ec7-a790f0b94673.png)
+
+# Decision Flowchart
+
+![Motor_Enriquecimento (2)](https://user-images.githubusercontent.com/66540657/176736538-7ce24820-0080-4352-8e33-c309cd51d654.png)
 
 
 
