@@ -143,10 +143,9 @@ def insert_into_database(values, config):
                 print('final decision')
                 print(df_enriq)
 
-                print(df_enriq.to_dict(orient='record'))
-
                 #### CONVERTER df_enriq.to_dict(orient='record') PARA JSON 
-
+                print(df_enriq.to_json(orient='records'))
+                
                 #### VARRRER JSON ACIMA
                 #### ENVIAR PARA NOVO TOPICO (kafka_enrichment_topic)
 
