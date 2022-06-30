@@ -23,6 +23,9 @@ All services of project
 
 avro: Manages all avro read and write, with serialization.
 yaml: Manages all yaml read and write.
+MySQL: Stores all processed data
+Kafka: Responsible for producing the data
+Spark: Responsible for receiving and processing the data
 
 ### Source codes
 #### kafka_producer.py
@@ -46,13 +49,14 @@ Spark streaming source code responsible for streaming a kafka topic.
 * Read stream of a topic.
 * Data enrichment.
 
-# Diagram
+#### kafka_producer
+In addition to kafka consuming the data, it was responsible for producing them using the python language.
 
-![Motor_Enriquecimento (3)](https://user-images.githubusercontent.com/66540657/176736058-c21b9862-e482-4b8d-9ec7-a790f0b94673.png)
+* Produces the data
+* It's the trigger of the whole flow
+* Responsible for forwarding the data to the topic
+* Collect the data made by python
 
-# Decision Flowchart
+### File
 
-![Motor_Enriquecimento (2)](https://user-images.githubusercontent.com/66540657/176736538-7ce24820-0080-4352-8e33-c309cd51d654.png)
-
-
-
+The business rule addressed is referring to a flow in which it classifies customers in a bank account according to their bank movements, being withdrawal, loan or renegotiation, when performing one of these movements the streaming system reacts with some operations such as unavailable balance, personal loan campaign and debt renegotiation
